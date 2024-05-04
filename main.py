@@ -5,6 +5,7 @@ from google.cloud import storage
 import tempfile
 import os
 
+# コメントを追加（Cloud Buildのテスト用）
 def fetch_weather_data():
     url = 'https://weather.tsukumijima.net/api/forecast'
     params = {'city': '400040'}
