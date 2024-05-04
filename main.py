@@ -14,7 +14,7 @@ def write_to_csv(weather_data):
     today = datetime.now().strftime("%Y-%m-%d")
     file_name = f"{today}_weather_forecast.csv"
 
-    with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
+    with tempfile.NamedTemporaryFile(mode='w', delete=False, encoding='utf-8') as temp_file:
         writer = csv.writer(temp_file)
         writer.writerow(['日付', '天気', '最高気温(℃)', '最低気温(℃)', '当日フラグ', '発表日'])
         
