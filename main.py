@@ -14,7 +14,7 @@ def write_to_csv(weather_data):
     today = datetime.now().strftime("%Y-%m-%d")
     file_name = f"{today}_weather_forecast.csv"
 
-    with tempfile.NamedTemporaryFile(mode='w', delete=False, encoding='utf-8', newline='') as temp_file:
+    with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
         writer = csv.writer(temp_file)
         writer.writerow(['日付', '天気', '最高気温(℃)', '最低気温(℃)', '当日フラグ', '発表日'])
         
@@ -33,7 +33,7 @@ def upload_to_gcs(file_path, bucket_name, destination_blob_name):
     client = storage.Client()
     bucket = client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
-    blob.upload_from_filename(file_path, content_type='text/csv; charset=utf-8')
+    blob.upload_from_filename(file_path)
     print(f"CSVファイルが {bucket_name}/{destination_blob_name} にアップロードされました。")
 
 def main(event, context):
