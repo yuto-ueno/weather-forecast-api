@@ -5,7 +5,6 @@ from google.cloud import storage
 import tempfile
 import os
 
-# コメントを追加（Cloud Buildのテスト用）
 def fetch_weather_data():
     url = 'https://weather.tsukumijima.net/api/forecast'
     params = {'city': '400040'}
@@ -41,6 +40,6 @@ def main(event, context):
     weather_data = fetch_weather_data()
     temp_file_path = write_to_csv(weather_data)
     bucket_name = "weather_forecast_bucket"
-    destination_blob_name = f"folder_name/{datetime.now().strftime('%Y-%m-%d')}_weather_forecast.csv"
+    destination_blob_name = f"{datetime.now().strftime('%Y-%m-%d')}_weather_forecast.csv"
     upload_to_gcs(temp_file_path, bucket_name, destination_blob_name)
     os.unlink(temp_file_path)
